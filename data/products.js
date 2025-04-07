@@ -656,5 +656,37 @@ export const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "id1",
+    image: "images/products/backpack.jpg",
+    name: "Waterproof Black Backpack",
+    rating: {
+      stars: 4,
+      count: 3
+    },
+    priceCents: 2000,
+    keywords: [
+      "sweaters",
+      "hoodies",
+      "apparel",
+      "mens"
+    ]
+  },
+  {
+    id: "id2",
+    image: "images/products/umbrella.jpg",
+    name: "Green Family Size Umbrella",
+    rating: {
+      stars: 5,
+      count: 640
+    },
+    priceCents: 1200,
+    keywords: [
+      "sweaters",
+      "hoodies",
+      "apparel",
+      "mens"
+    ]
   }
 ];

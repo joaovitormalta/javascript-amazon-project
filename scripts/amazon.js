@@ -72,6 +72,8 @@ function updateCartQuantity() {
     .innerHTML = cartQuantity
 }
 
+updateCartQuantity()
+
 let previousTimeoutId
 
 document.querySelectorAll('.js-add-to-cart')

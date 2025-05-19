@@ -1,9 +1,16 @@
 import { renderOrderSummary } from "../../scripts/checkout/orderSummary.js";
 import { cart } from "../../data/cart-class.js";
+import { loadProducts } from "../../data/products.js";
 
 describe('test suite: renderOrderSummary', () => {
   const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6'
   const productId2 = '15b6fc6f-327a-4ec4-896f-486349e85a3d'
+
+  beforeAll((done) => {
+    loadProducts(() => {
+      done()
+    })
+  })
 
   beforeEach(() => {
     spyOn(localStorage, 'setItem')
@@ -16,14 +23,14 @@ describe('test suite: renderOrderSummary', () => {
       `
 
     cart.cartItems = [{
-        productId: productId1,
-        quantity: 2,
-        deliveryOptionId: '1'
-      }, {
-        productId: productId2,
-        quantity: 1,
-        deliveryOptionId: '2'
-      }]
+      productId: productId1,
+      quantity: 2,
+      deliveryOptionId: '1'
+    }, {
+      productId: productId2,
+      quantity: 1,
+      deliveryOptionId: '2'
+    }]
 
     renderOrderSummary()
   })
@@ -42,11 +49,11 @@ describe('test suite: renderOrderSummary', () => {
     ).toContain('Quantity: 2')
     expect(
       document.querySelector(`.js-product-name-${productId1}`)
-      .innerText
+        .innerText
     ).toEqual('Black and Gray Athletic Cotton Socks - 6 Pairs')
     expect(
       document.querySelector(`.js-product-price-${productId1}`)
-      .innerText
+        .innerText
     ).toEqual('$10.90')
 
     expect(
@@ -54,11 +61,11 @@ describe('test suite: renderOrderSummary', () => {
     ).toContain('Quantity: 1')
     expect(
       document.querySelector(`.js-product-name-${productId2}`)
-      .innerText
+        .innerText
     ).toEqual('Intermediate Size Basketball')
     expect(
       document.querySelector(`.js-product-price-${productId2}`)
-      .innerText
+        .innerText
     ).toEqual('$20.95')
   })
 
@@ -76,11 +83,11 @@ describe('test suite: renderOrderSummary', () => {
     ).not.toEqual(null)
     expect(
       document.querySelector(`.js-product-name-${productId2}`)
-      .innerText
+        .innerText
     ).toEqual('Intermediate Size Basketball')
     expect(
       document.querySelector(`.js-product-price-${productId2}`)
-      .innerText
+        .innerText
     ).toEqual('$20.95')
     expect(cart.cartItems.length).toEqual(1)
     expect(cart.cartItems[0].productId).toEqual(productId2)
